@@ -1,0 +1,46 @@
+{
+  "name": "congress-bot",
+  "version": "1.0.0",
+  "engines": {
+    "node": "6.2.1"
+  },
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "DEBUG=bot*,express* node_modules/.bin/nodemon ./bin/www",
+    "test": "xo"
+  },
+  "author": "Paul Molluzzo <paul@molluzzo.com> (http://paul.molluzzo.com)",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.5.1",
+    "body-parser": "~1.13.2",
+    "compression": "^1.6.2",
+    "debug": "~2.2.0",
+    "dotenv": "^2.0.0",
+    "express": "~4.13.1",
+    "express-handlebars": "^3.0.0",
+    "hbs-utils": "0.0.3",
+    "morgan": "~1.6.1",
+    "request": "^2.75.0",
+    "request-promise-native": "^1.0.3",
+    "winston": "^2.3.0",
+    "winston-papertrail": "^1.0.3",
+    "xo": "^0.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "xo": {
+    "space": true,
+    "rules": {
+      "camelcase": [
+        "error",
+        {
+          "properties": "never"
+        }
+      ]
+    }
+  }
+}
