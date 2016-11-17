@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "DEBUG=bot*,express* node_modules/.bin/nodemon ./bin/www",
-    "test": "xo"
+    "test": "xo && ava"
   },
   "author": "Paul Molluzzo <paul@molluzzo.com> (http://paul.molluzzo.com)",
   "license": "MIT",
@@ -30,6 +30,7 @@
     "xo": "^0.17.0"
   },
   "devDependencies": {
+    "ava": "^0.17.0",
     "nodemon": "^1.11.0"
   },
   "xo": {

@@ -7,6 +7,10 @@ function requestCongressAPI(endpoint, method = 'GET', queryString = {}) {
     uri: `https://congress.api.sunlightfoundation.com/${endpoint}/`,
     qs: queryString,
     method: method
+  }).then(response => {
+    return JSON.parse(response);
+  }).catch(err => {
+    throw new Error(err.message);
   });
 }
 
