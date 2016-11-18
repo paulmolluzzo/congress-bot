@@ -14,6 +14,6 @@ function requestCongressAPI(endpoint, method = 'GET', queryString = {}) {
   });
 }
 
-exports.locateLegislators = function (zip) {
-  return requestCongressAPI('legislators/locate', 'GET', {zip});
+exports.locateLegislators = function (latitude, longitude) {
+  return requestCongressAPI('legislators/locate', 'GET', {latitude, longitude});
 };
