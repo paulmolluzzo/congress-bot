@@ -171,6 +171,52 @@ const botMethods = {
     });
   },
 
+  sendLegislatorInfo(recipientId, legislatorInfo) {
+    const legislatorElements = [];
+
+    legislatorInfo.forEach(legislator => {
+      const legCard = {
+        title: `${legislator.title}. ${legislator.first_name} ${legislator.last_name} (${legislator.party})`,
+        subtitle: `Open Congress email: ${legislator.oc_email}`,
+        item_url: `${legislator.website}`,
+        image_url: `${config.SERVER_URL}/assets/congress.png`,
+        buttons: []
+      };
+      // add FB image as image_url
+      if (legislator.facebook_id) {
+        legCard.image_url = `https://graph.facebook.com/${legislator.facebook_id}/picture?type=large`;
+        legCard.buttons.push({
+          type: 'web_url',
+          title: `View FB Page`,
+          url: `https://facebook.com/${legislator.facebook_id}`
+        });
+      }
+
+      // add phone number if it exists
+      if (legislator.phone) {
+        const intlPhone = `+1${legislator.phone.replace('-', '')}`
+        legCard.buttons.push({
+          type: 'phone_number',
+          payload: intlPhone,
+          title: `Call ${legislator.title}. ${legislator.last_name}`
+        });
+      }
+
+      // add contact form if it exists
+      if (legislator.contact_form) {
+        legCard.buttons.push({
+          type: 'web_url',
+          title: `Contact via Website`,
+          url: `${legislator.contact_form}`
+        });
+      }
+
+      legislatorElements.push(legCard);
+    });
+
+    return this.sendGenericMessage(recipientId, legislatorElements);
+  },
+
   sendGifMessage(recipientId) {
     var messageData = {
       recipient: {

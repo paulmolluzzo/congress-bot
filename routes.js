@@ -4,6 +4,7 @@ const winston = require('winston');
 const app = require('./app');
 const botMethods = require('./bot-methods');
 const config = require('./config');
+const {wit, sessions, findOrCreateSession} = require('./wit');
 
 // homepage
 app.get('/', (req, res) => {
@@ -30,10 +31,28 @@ app.post('/webhook', (req, res) => {
     data.entry.forEach(pageEntry => {
       // Iterate over each messaging event
       pageEntry.messaging.forEach(messagingEvent => {
+        const sender = messagingEvent.sender.id;
+        const sessionId = findOrCreateSession(sender);
+
         if (messagingEvent.optin) {
           botMethods.receivedAuthentication(messagingEvent);
         } else if (messagingEvent.message) {
-          botMethods.receivedMessage(messagingEvent);
+          const {text, attachments} = messagingEvent.message;
+          if (attachments) {
+            botMethods.receivedMessage(messagingEvent);
+          } else if (text) {
+            wit.runActions(
+              sessionId,
+              text,
+              sessions[sessionId].context
+            ).then(context => {
+              console.log('Waiting for next user messages');
+              sessions[sessionId].context = context;
+            })
+            .catch(err => {
+              console.error('Oops! Got an error from Wit: ', err.stack || err);
+            });
+          }
         } else if (messagingEvent.delivery) {
           botMethods.receivedDeliveryConfirmation(messagingEvent);
         } else if (messagingEvent.postback) {
