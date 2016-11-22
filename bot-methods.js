@@ -171,8 +171,8 @@ const botMethods = {
     });
   },
 
-  sendLegislatorInfo(recipientId, legislatorInfo) {
-    const legislatorElements = [];
+  createLegislatorCards(legislatorInfo) {
+    const legislatorCards = [];
 
     legislatorInfo.forEach(legislator => {
       const legCard = {
@@ -194,7 +194,7 @@ const botMethods = {
 
       // add phone number if it exists
       if (legislator.phone) {
-        const intlPhone = `+1${legislator.phone.replace('-', '')}`
+        const intlPhone = `+1${legislator.phone.replace('-', '')}`;
         legCard.buttons.push({
           type: 'phone_number',
           payload: intlPhone,
@@ -211,10 +211,16 @@ const botMethods = {
         });
       }
 
-      legislatorElements.push(legCard);
+      legislatorCards.push(legCard);
     });
 
-    return this.sendGenericMessage(recipientId, legislatorElements);
+    return legislatorCards;
+  },
+
+  sendLegislatorInfo(recipientId, legislatorInfo) {
+    const legislatorCards = this.createLegislatorCards(legislatorInfo);
+
+    return this.sendGenericMessage(recipientId, legislatorCards);
   },
 
   sendGifMessage(recipientId) {

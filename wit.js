@@ -65,7 +65,6 @@ const actions = {
         return resolve(context);
       }
 
-
       congress.locateLegislatorsByQuery(location).then(response => {
         context.legislators = response.results;
         delete context.missingLocation;

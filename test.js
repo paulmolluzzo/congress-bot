@@ -1,5 +1,6 @@
 const test = require('ava');
 const nodeGeocoder = require('node-geocoder');
+const botMethods = require('./bot-methods');
 const congress = require('./congress');
 
 const geocoderOptions = {
@@ -40,4 +41,12 @@ test('Locate Legislators By Zip', t => {
   const locatedLegislators = congress.locateLegislators(testZip.latitude, testZip.longitude);
 
   t.notThrows(locatedLegislators);
+});
+
+test('Create Legislator Cards', async t => {
+  await congress.locateLegislators(testZip.latitude, testZip.longitude).then(data => {
+    const originalDataLength = data.results.length;
+    const legislatorCards = botMethods.createLegislatorCards(data.results);
+    return t.is(originalDataLength, legislatorCards.length);
+  });
 });
