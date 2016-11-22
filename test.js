@@ -1,10 +1,12 @@
 const test = require('ava');
 const nodeGeocoder = require('node-geocoder');
 const botMethods = require('./bot-methods');
+const config = require('./config');
 const congress = require('./congress');
 
 const geocoderOptions = {
-  provider: 'google'
+  provider: 'google',
+  apiKey: config.GOOGLE_API_KEY
 };
 
 var geocoder = nodeGeocoder(geocoderOptions);

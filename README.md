@@ -4,7 +4,7 @@ This is a FB Messenger bot that makes it easier to find your the contact informa
 
 ## Setup
 
-This repo has several dependencies to work properly with FB Messenger. You will need a Facebook Page and App that is subscribed to the page, a hosted version of the app with a publicly accessible URL, a Papertrail account for storing logs, and a [Wit.ai](https://wit.ai/) account for natural language processing.
+This repo has several dependencies to work properly with FB Messenger. You will need a Facebook Page and App that is subscribed to the page, a hosted version of the app with a publicly accessible URL, a Papertrail account for storing logs, a [Wit.ai](https://wit.ai/) account for natural language processing, and a [Google Developers Account](https://developers.google.com/) for the geocoding.
 
 You will need to push your site to a publicly accessible server and URL. This URL is given to Facebook during the app creation process, and you will store the server url as an environment variable. You might consider using [Heroku](https://heroku.com).
 
@@ -30,6 +30,13 @@ Review at [Wit.ai's Quick Start](https://wit.ai/docs/quickstart) to get a sense 
 # WIT AI
 WIT_AI_APP_ID
 WIT_AI_SERVER_TOKEN
+```
+
+Setup a new app with access to the Google Maps Geocoding API through [the developer console](https://console.developers.google.com/apis/credentials?project=_), and take the API Key to set these environment variables:
+
+```
+# GOOGLE
+GOOGLE_API_KEY
 ```
 
 You should set up an account on [Papertrail](https://papertrailapp.com/) that allows you to log events from the app to a central location. Once you set up a service with Papertrail you can store the environment variables:

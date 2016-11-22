@@ -2,9 +2,11 @@
 
 const nodeGeocoder = require('node-geocoder');
 const rp = require('request-promise-native');
+const config = require('./config');
 
 const geocoderOptions = {
-  provider: 'google'
+  provider: 'google',
+  apiKey: config.GOOGLE_API_KEY
 };
 
 var geocoder = nodeGeocoder(geocoderOptions);
