@@ -48,6 +48,7 @@ PAPERTRAIL_PORT
 ```
 
 To set these variables, you can copy the file `.env-sample` to `.env` and store the values.
+
 ---
 
 ©2016 Paul Molluzzo
