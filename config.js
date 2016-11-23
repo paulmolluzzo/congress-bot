@@ -1,5 +1,8 @@
 'use strict';
 
+// grab env vars
+require('dotenv').config({silent: true});
+
 module.exports = {
   APP_SECRET: process.env.MESSENGER_APP_SECRET,
   VALIDATION_TOKEN: process.env.MESSENGER_VALIDATION_TOKEN,
