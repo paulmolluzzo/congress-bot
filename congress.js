@@ -9,7 +9,7 @@ const geocoderOptions = {
   apiKey: config.GOOGLE_API_KEY
 };
 
-var geocoder = nodeGeocoder(geocoderOptions);
+const geocoder = nodeGeocoder(geocoderOptions);
 
 const congress = {
   requestCongressAPI(endpoint, method = 'GET', queryString = {}) {
