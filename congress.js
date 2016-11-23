@@ -24,6 +24,10 @@ const congress = {
     });
   },
 
+  legislators(state, chamber) {
+    return this.requestCongressAPI('legislators', 'GET', {state, chamber});
+  },
+
   locateLegislators(latitude, longitude) {
     return this.requestCongressAPI('legislators/locate', 'GET', {latitude, longitude});
   },

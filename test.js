@@ -33,8 +33,15 @@ test('Locate Legislators By City and State', t => {
   t.notThrows(locatedLegislators);
 });
 
-test('Locate Legislators By State', t => {
-  const locatedLegislators = congress.locateLegislators(testState.latitude, testState.longitude);
+test('Locate Legislators By State', async t => {
+  const stateAbbr = testState.administrativeLevels.level1short;
+  const locatedLegislators = congress.legislators(stateAbbr);
+
+  t.notThrows(locatedLegislators);
+});
+
+test('Locate Legislators By Query', async t => {
+  const locatedLegislators = await congress.locateLegislatorsByQuery('350 5th Ave, New York, NY 10118');
 
   t.notThrows(locatedLegislators);
 });
