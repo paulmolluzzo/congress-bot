@@ -40,8 +40,8 @@ test('Locate Legislators By State', async t => {
   t.notThrows(locatedLegislators);
 });
 
-test('Locate Legislators By Query', async t => {
-  const locatedLegislators = await congress.locateLegislatorsByQuery('350 5th Ave, New York, NY 10118');
+test('Locate Legislators By Query', t => {
+  const locatedLegislators = congress.locateLegislatorsByQuery('350 5th Ave, New York, NY 10118');
 
   t.notThrows(locatedLegislators);
 });
